@@ -3,8 +3,23 @@ var express     = require("express"),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose")
     
+var Strain      = require("./models/strain");
+
+var seed        = [
+                    {
+                        name: "BuBa",
+                        image: "http://www.thenug.com/sites/default/pub/040314/thenug-wmNRDwnFBq.jpg",
+                        description: "blah blah blah"
+                    },
+                    {
+                        name: "BuBa",
+                        image: "http://www.thenug.com/sites/default/pub/040314/thenug-wmNRDwnFBq.jpg",
+                        description: "blah blah blah"
+                    }
+                ]
     
     
+    Strain.create(seed, function(){});
     
     mongoose.connect("mongodb://localhost/s-strains");
     app.use(bodyParser.urlencoded({extended: true}));
@@ -19,7 +34,12 @@ var express     = require("express"),
     });
     
     app.get("/strains", function(req, res){
-       res.render("./strains/strains"); 
+        Strain.find({}, function(err, strains){
+            if(err)
+                console.log("findind err: " + err)
+            else
+                res.render("./strains/index", {strains: strains});
+        });
     });
     
 

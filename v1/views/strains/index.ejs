@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+    <div class = "ui container">
+        <div class="ui menu">
+            <a class="header item" href = "/">Strange Strains</a>
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+            <a class="ui right item">Login</a>
+            <a class="item">Sign Up</a>
+        </div>
+    </div>
+    
+    <div class="ui container">
+        <% strains.forEach(function(strain){%>
+            <div>
+                <img src = "<%strain.image%>">
+            </div> 
+            <div>
+                <p><%= strain.name%></p>
+            </div>
+        <% });%>
+    </div>
+
+<% include ../partials/footer %>
