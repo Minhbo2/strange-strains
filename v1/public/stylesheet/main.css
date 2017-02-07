@@ -1,0 +1,19 @@
+hr{
+    width : 75%;
+    margin: 50px auto;
+}
+
+#navbar{
+    height: 60px;
+}
+
+#strain-author{
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.container{
+    margin: 30px auto;
+}

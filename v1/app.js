@@ -9,17 +9,19 @@ var seed        = [
                     {
                         name: "BuBa",
                         image: "http://www.thenug.com/sites/default/pub/040314/thenug-wmNRDwnFBq.jpg",
-                        description: "blah blah blah"
+                        description: "blah blah blah",
+                        author: "No One"
                     },
                     {
                         name: "BuBa",
                         image: "http://www.thenug.com/sites/default/pub/040314/thenug-wmNRDwnFBq.jpg",
-                        description: "blah blah blah"
+                        description: "blah blah blah",
+                        author: "No One"
                     }
                 ]
     
     
-    Strain.create(seed, function(){});
+    // Strain.create(seed, function(){});
     
     mongoose.connect("mongodb://localhost/s-strains");
     app.use(bodyParser.urlencoded({extended: true}));
