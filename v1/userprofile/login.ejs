@@ -1,0 +1,22 @@
+<% include ../views/partials/header %>
+
+    <div class = "ui container">
+        <form action="/strains", method="POST">
+            <div>
+                <input type="text", placeholder ="username", name = "username">
+            </div>
+            <div>
+                <input type="text", placeholder ="password", name = "password">
+            </div>
+            <div>
+                <button class = "large ui primary button">Login</button>
+        </form>
+        <div>
+            <button class = "ui button">
+                    <a href = "/">Cancel</a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<% include ../views/partials/footer %>

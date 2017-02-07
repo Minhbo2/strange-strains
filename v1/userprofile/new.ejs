@@ -1,0 +1,36 @@
+<% include ../views/partials/header %>
+
+    <div class = "ui container">
+        <form action="/userprofile", method="POST">
+            <div>
+                <input type="text", placeholder ="username", name = "username">
+            </div>
+            <div>
+                <input type="text", placeholder ="password", name = "password">
+            </div>
+            <div>
+                <input type="email", placeholder ="email address", name = "email">
+            </div>
+            
+            <h4>Upload profile your profile picture</h4>
+            <div class="ui small image">
+                <img src="http://www.sunshineglobalhospitals.com/xadmin/myaccount/upload/default/profiledefault.png">
+                <div>
+                    <input type="file" accept ="image/*" name="image">
+                </div>
+            </div>
+            <div>
+                <textarea name="user-description" rows ="20" cols="100" placeholder="Tell us something about yourself"></textarea>
+            </div>
+            <div>
+                <button class = "large ui primary button">Sign Up</button>
+            </div>
+        </form>
+        <div>
+            <button class = "ui button">
+                <a href = "/">Cancel</a>
+            </button>
+        </div>
+    </div>
+
+<% include ../views/partials/footer %>

@@ -2,7 +2,10 @@ var mongoose    =  require("mongoose");
 
 var userSchema= {
                     username: String,
-                    password: String
+                    password: String,
+                    email: String,
+                    image: String,
+                    description: String
                 }
 
 

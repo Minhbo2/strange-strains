@@ -1,6 +1,6 @@
 <% include ../partials/header %>
     
-    <div class = "ui container">
+    <div class = "ui inverted segment container">
         <% strains.forEach(function(strain){%>
             <div class="ui internally celled grid">
                 <div class="row">
@@ -11,7 +11,7 @@
                     </div>
                     <div class="ten wide column">
                         <div>
-                            <p><%= strain.name%></p>
+                            <p><strong><%= strain.name%></strong></p>
                         </div>
                         <p><%= strain.description%></p>
                     </div>
