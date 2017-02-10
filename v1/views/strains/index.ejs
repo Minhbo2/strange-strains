@@ -11,12 +11,14 @@
                     </div>
                     <div class="ten wide column">
                         <div>
-                            <p><strong><%= strain.name%></strong></p>
+                            <a href ="/"><strong><h3><%= strain.name%></h3></strong></a>
                         </div>
                         <p><%= strain.description%></p>
                     </div>
                     <div class="three wide column">
-                        <p id = "strain-author"><em>Submitted by: <%= strain.author%></em></p>        
+                        <p id = "strain-author">
+                            <em>Submitted by: <a href = "/"><%= strain.author%></a></em>
+                        </p>
                     </div>
                 </div>
             </div>
