@@ -1,97 +1,54 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    multer      = require("multer")
+var express             = require("express"),
+    app                 = express(),
+    bodyParser          = require("body-parser"),
+    mongoose            = require("mongoose"),
+    passport            = require("passport"),
+    passportLocal       = require("passport-local"),
+    passportMongoose    = require("passport-local-mongoose"),
+    User                = require("./models/user"),
+    Strain              = require("./models/strain")
     
     
-var Strain      = require("./models/strain"),
-    User        = require("./models/user");
+var userRouter          = require("./routes/index"),
+    strainRouter        = require("./routes/strains"),
+    upload              = require("./middleware/multer")
 
 
     
-    mongoose.connect("mongodb://localhost/s-strains");
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.set("view engine", "ejs");
-    app.use(express.static(__dirname + "/public"));
+mongoose.connect("mongodb://localhost/s-strains");
+app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+    
+
     
     
+// PASSPORT CONFIG
+app.use(require("express-session")({
+    secret: "Use this for encoding and decoding passport!",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocal(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
     
+
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+//   res.locals.error = req.flash("error");
+//   res.locals.success = req.flash("success");
+   next();
+});
     
-    
-    
-    var storage = multer.diskStorage({
-        destination: function(req, file, callback){
-            callback(null, "./public/upload");
-        },
-        filename: function(req, file, callback){
-            callback(null, Date.now() + file.originalname);
-        }
-    });
-    
-    // multer().single("field name must be exactly the same as the input's image name given in the new file")
-    var upload = multer({storage: storage}).single("user[image]");
-    
-    
-    
-    
-    
-    // HOME PAGE
-    app.get("/", function(req, res){
-        res.render("landing"); 
-    });
-    
-    
-    // INDEX
-    app.get("/strains", function(req, res){
-        Strain.find({}, function(err, strains){
-            if(err)
-                console.log("findind err: " + err)
-            else
-                res.render("./strains/index", {strains: strains});
-        });
-    });
-    
-    
-    //SIGN UP PAGE
-    app.get("/signup", function(req,res){
-        res.render("./userprofile/new");
-    });
-    
-    
-    // LOGIN
-    app.get("/login", function(req, res){
-       res.render("./userprofile/login"); 
-    });
-    
-    
-    // USER PROFILE PAGE AFTER SIGN UP
-    app.post("/userprofile", function(req, res){
-        
-        upload(req, res, function(err){
-            if(err)
-                return console.log(err);
-                
-            // extracting data from the form
-            var name = req.body.user.imagename;
-            var image = "/upload/" + req.file.filename;
-            var username = req.body.user.username;
-            var descr = req.body.user.description;
-            var email = req.body.user.email;
-            
-            var newUser = {username: username, image: image, name: name, description: descr, email: email};
-            
-            User.create(newUser, function(err, newlyUser){
-                if(err)
-                    return res.send("Creating User error: " + err);
-                
-                res.render("./userprofile/index", {newUser: newlyUser});
-            });
-        });
-    });
 
 
 
+
+app.use(userRouter);
+app.use(strainRouter);
 
 
 

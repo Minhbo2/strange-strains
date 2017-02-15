@@ -5,8 +5,12 @@ var strainSchema = new mongoose.Schema({
     image: String,
     description: String,
     author: {
-        // need to input the user model in here
-    }
+                id: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "User"
+                    },
+                username: String
+            }
 });
 
 module.exports = mongoose.model("strain", strainSchema);

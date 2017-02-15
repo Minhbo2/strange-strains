@@ -1,1 +1,26 @@
-<h1>Creating a new strain</h1>
+<% include ../partials/header %>
+    
+    <div class = "ui container">
+        <form action="/strains" method = "POST" enctype = "multipart/form-data">
+            <div>
+                <h3>Enter a Strain</h3>
+                <input type = "text" name = "name" placeholder = "strain name"> 
+            </div>
+            <div class = "small ui image">
+                <input type = "file" name = "image">
+            </div>
+            <div>
+                <textarea rows = "30" cols = "50" placeholder = "Write strain's info" name = "description"></textarea>
+            </div>
+            <div>
+                <button class = "large ui primary button">Submit</button>
+            </div>
+            <div>
+                <button class = "ui button">
+                    <a href = "/strains">Cancel</a>
+                </button>
+            </div>
+        </form>
+    </div>
+
+<% include ../partials/footer %>

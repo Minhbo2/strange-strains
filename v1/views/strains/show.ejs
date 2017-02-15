@@ -1,1 +1,18 @@
-<h1>Show all the strains the user has created</h1>
+<% include ../partials/header %>
+
+    <div class = "ui container">
+        <div>
+            <h2 class = "ui header"><%= strain.name%></h2>
+            <p>by: 
+                <a href = "/strains/user/<%= strain.author.id%>"><%= strain.author.username%></a>
+            </p>
+        </div>
+        <div class = "ui medium image">
+            <img src = "<%= strain.image%>">
+        </div>
+        <div>
+            <p><%= strain.description%></p>
+        </div>
+    </div>
+
+<% include ../partials/footer %>

@@ -1,29 +1,28 @@
 <% include ../partials/header %>
 
     <div class = "ui container">
-        <form action="/userprofile", method="POST" enctype="multipart/form-data">
+        <form action="/signup" method="POST" enctype = "multipart/form-data">
             <div>
                 <h3>Pick a Username:</h3>
-                <input type="text", placeholder ="username", name = "user[username]">
+                <input type="text" placeholder ="username" name = "username">
             </div>
             <div>
                 <h3>Create a Password:</h3>
-                <input type="password", placeholder ="password", name = "user[password]">
+                <input type="password" placeholder ="password" name = "password">
+            </div>
+            <div class = "ui small image">
+                <img src = "http://www.easystarter.com/assets/user/avatar/default-profile.png" name="avatard">
+            </div>
+            <div>
+                <h3>Select a profile picture.</h3>
+                <input type = "file" name = "image">
             </div>
             <div>
                 <h3>Enter a Valid Email Address:</h3>
-                <input type="email", placeholder ="email address", name = "user[email]">
-            </div>
-            
-            <h4>Upload Your Profile Picture</h4>
-            <div class="ui small image">
-                <img src="http://www.sunshineglobalhospitals.com/xadmin/myaccount/upload/default/profiledefault.png">
-                <div>
-                    <input type="file" name="user[image]">
-                </div>
+                <input type="email" placeholder ="email address" name = "email">
             </div>
             <div>
-                <textarea name="user[description]" rows ="20" cols="100" placeholder="Tell us something about yourself"></textarea>
+                <textarea name="description" rows ="20" cols="100" placeholder="Tell us something about yourself"></textarea>
             </div>
             <div>
                 <button class = "large ui primary button">Sign Up</button>

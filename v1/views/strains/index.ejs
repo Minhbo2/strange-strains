@@ -1,7 +1,12 @@
 <% include ../partials/header %>
     
     <div class = "ui inverted segment container">
-        <% strains.forEach(function(strain){%>
+        <div>
+            <a href = "/strains/new">
+                <button class = "large ui primary button">Submit a New Strain</button>
+            </a>
+        </div>
+        <% strain.forEach(function(strain){%>
             <div class="ui internally celled grid">
                 <div class="row">
                     <div class="three wide column">
@@ -11,13 +16,15 @@
                     </div>
                     <div class="ten wide column">
                         <div>
-                            <a href ="/"><strong><h3><%= strain.name%></h3></strong></a>
+                            <a href ="/strains/<%= strain._id%>"><strong><h3><%= strain.name%></h3></strong></a>
                         </div>
                         <p><%= strain.description%></p>
                     </div>
                     <div class="three wide column">
                         <p id = "strain-author">
-                            <em>Submitted by: <a href = "/"><%= strain.author%></a></em>
+                            <em>
+                                Submitted by: <a href = "/strains/user/<%= strain.author.id%>"><%= strain.author.username%></a>
+                            </em>
                         </p>
                     </div>
                 </div>

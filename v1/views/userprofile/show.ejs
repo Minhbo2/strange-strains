@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+    <div class="ui container">
+        <div>
+            <h1 class = "ui header"><%= user.username%></h1>
+        </div>
+        <div>
+            <p><%= user.description%></p>
+        </div>
+        <div>
+            <p><%= user.email%></p>
+        </div>
+        <div>
+            <img src = "<%= user.image%>">
+        </div>
+        <!--adding all the strains this user have created-->
+    </div>
+
+
+<% include ../partials/footer %>
